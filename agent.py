@@ -21,7 +21,7 @@ from google.adk.tools.bigquery.config import BigQueryToolConfig
 from google.adk.tools.bigquery.config import WriteMode
 import google.auth
 from .config import config
-from .dataform_github_agent.bigquery_tools import (
+from .data_engineering_copilot.bigquery_tools import (
     get_udf_sp_tool,
     sample_table_data_tool,
     analyze_query_performance,
@@ -32,7 +32,7 @@ from .dataform_github_agent.bigquery_tools import (
     find_failed_bigquery_jobs,
     suggest_query_optimization,
 )
-from .dataform_github_agent.dataform_tools import (
+from .data_engineering_copilot.dataform_tools import (
     compile_dataform,
     delete_file_from_dataform,
     execute_dataform_workflow,
@@ -51,13 +51,13 @@ from .dataform_github_agent.dataform_tools import (
     analyze_assertion_results,
     check_data_quality_anomalies,
 )
-from .dataform_github_agent.gcs_tools import (
+from .data_engineering_copilot.gcs_tools import (
     list_bucket_files_tool,
     read_gcs_file_tool,
     validate_bucket_exists_tool,
     validate_file_exists_tool,
 )
-from .dataform_github_agent.github_tools import (
+from .data_engineering_copilot.github_tools import (
     read_file_from_github,
     write_file_to_github,
     create_github_branch,
@@ -70,7 +70,7 @@ from .dataform_github_agent.github_tools import (
     cleanup_merged_branches,
     create_github_repository,
 )
-from .dataform_github_agent.dbt_tools import (
+from .data_engineering_copilot.dbt_tools import (
     dbt_run,
     dbt_test,
     dbt_compile,
@@ -87,7 +87,7 @@ from .dataform_github_agent.dbt_tools import (
     dbt_source_freshness,
     dbt_parse,
 )
-from .dataform_github_agent.dataproc_tools import (
+from .data_engineering_copilot.dataproc_tools import (
     create_dataproc_cluster,
     list_dataproc_clusters,
     get_dataproc_cluster_details,
@@ -98,7 +98,7 @@ from .dataform_github_agent.dataproc_tools import (
     create_dataproc_serverless_batch,
     check_dataproc_serverless_batch_status,
 )
-from .dataform_github_agent.databricks_tools import (
+from .data_engineering_copilot.databricks_tools import (
     create_databricks_cluster,
     list_databricks_clusters,
     get_databricks_cluster_status,

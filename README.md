@@ -1,9 +1,9 @@
-# 🤖 Dataform GitHub Agent
+# 🤖 Data Engineering Copilot
 
-[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/david-leadtech/dataform-github-agent/releases)
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/david-leadtech/data-engineering-copilot/releases)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
 
-**AI-powered data engineering agent** that helps you build and manage data pipelines across multiple platforms:
+**AI-powered data engineering copilot** that helps you build and manage data pipelines across multiple platforms:
 
 - ✅ **Dataform**: Create, modify, compile, and execute Dataform SQLX pipelines
 - ✅ **dbt**: Full dbt project management (run, test, compile, docs, seed, snapshot, etc.)
@@ -34,14 +34,14 @@
 #### Option A: Using pip (recommended)
 
 ```bash
-cd dataform-github-agent
+cd data-engineering-copilot
 pip install -r requirements.txt
 ```
 
 #### Option B: Using pip with pyproject.toml
 
 ```bash
-cd dataform-github-agent
+cd data-engineering-copilot
 pip install -e .
 ```
 
@@ -61,7 +61,7 @@ gcloud services enable aiplatform.googleapis.com  # For Vertex AI
 
 ### 3. Configure Environment Variables
 
-Create a `.env` file in the `dataform-github-agent` directory:
+Create a `.env` file in the `data-engineering-copilot` directory:
 
 ```bash
 # Google Cloud (Required)
@@ -96,7 +96,7 @@ DATABRICKS_TOKEN=your_databricks_token_here
 #### Option A: Using ADK Web Interface (Recommended)
 
 ```bash
-cd dataform-github-agent
+cd data-engineering-copilot
 adk web
 ```
 
@@ -105,14 +105,14 @@ This will start a web server (usually at `http://localhost:8080`) where you can 
 #### Option B: Using ADK CLI
 
 ```bash
-cd dataform-github-agent
-adk run dataform_github_agent
+cd data-engineering-copilot
+adk run data_engineering_copilot
 ```
 
 #### Option C: Programmatic Usage
 
 ```python
-from dataform_github_agent.agent import root_agent
+from data_engineering_copilot.agent import root_agent
 
 # Use the agent in your code
 response = root_agent.run("Create a new Dataform source for Apple Ads")
@@ -130,7 +130,7 @@ adk --version
 # List available agents
 adk list
 
-# You should see 'dataform_github_agent' in the list
+# You should see 'data_engineering_copilot' in the list
 ```
 
 ## 📝 What is the .env file?
@@ -168,16 +168,16 @@ They are automatically installed with `pip install -r requirements.txt` or `pip 
 ### Method 1: Direct Installation (Quick Start)
 
 ```bash
-git clone https://github.com/david-leadtech/dataform-github-agent.git
-cd dataform-github-agent
+git clone https://github.com/david-leadtech/data-engineering-copilot.git
+cd data-engineering-copilot
 pip install -r requirements.txt
 ```
 
 ### Method 2: Editable Installation (Development)
 
 ```bash
-git clone https://github.com/david-leadtech/dataform-github-agent.git
-cd dataform-github-agent
+git clone https://github.com/david-leadtech/data-engineering-copilot.git
+cd data-engineering-copilot
 pip install -e .
 ```
 
@@ -187,7 +187,7 @@ This allows you to modify the code and have changes reflected immediately.
 
 Once published:
 ```bash
-pip install dataform-github-agent
+pip install data-engineering-copilot
 ```
 
 ## 💡 Usage Examples
@@ -562,7 +562,7 @@ This project uses [Semantic Versioning](https://semver.org/). See [RELEASES.md](
 
 **Current Version:** `1.1.0`
 
-**Latest Release:** [v1.0.0](https://github.com/david-leadtech/dataform-github-agent/releases/latest)
+**Latest Release:** [v1.0.0](https://github.com/david-leadtech/data-engineering-copilot/releases/latest)
 
 **Changelog:** [CHANGELOG.md](CHANGELOG.md)
 

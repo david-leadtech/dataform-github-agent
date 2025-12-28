@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Release script for Dataform GitHub Agent
+# Release script for Data Engineering Copilot
 # Usage: ./scripts/release.sh [major|minor|patch] [--dry-run]
 
 set -e

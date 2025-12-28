@@ -1,4 +1,4 @@
-# Using Dataform GitHub Agent in Cursor
+# Using Data Engineering Copilot in Cursor
 
 The agent can be used **locally** in Cursor in several ways. You don't need to deploy it to GCP - it runs on your machine and connects to GCP services via APIs.
 
@@ -8,7 +8,7 @@ You can import and use the agent directly in Python scripts within Cursor:
 
 ```python
 # In any Python file in Cursor
-from dataform_github_agent.agent import root_agent
+from data_engineering_copilot.agent import root_agent
 
 # Use the agent
 response = root_agent.run("Create a new Dataform source for Apple Ads")
@@ -80,11 +80,11 @@ Create an MCP (Model Context Protocol) server to expose the agent's tools direct
 
 1. **Create MCP server file:**
    ```python
-   # tools/dataform-agent-mcp/server.py
+   # tools/data-engineering-copilot-mcp/server.py
    from mcp.server import Server
-   from dataform_github_agent.agent import root_agent
+   from data_engineering_copilot.agent import root_agent
    
-   server = Server("dataform-github-agent")
+   server = Server("data-engineering-copilot")
    
    @server.tool()
    async def run_agent_task(prompt: str) -> str:
@@ -97,17 +97,17 @@ Create an MCP (Model Context Protocol) server to expose the agent's tools direct
    ```json
    {
      "mcpServers": {
-       "dataform-agent": {
+       "data-engineering-copilot": {
          "command": "python",
-         "args": ["tools/dataform-agent-mcp/server.py"]
+         "args": ["tools/data-engineering-copilot-mcp/server.py"]
        }
      }
    }
    ```
 
 3. **Use in Cursor:**
-   - Cursor's AI can now call the agent directly
-   - Ask Cursor: "Use the dataform agent to create a new source"
+   - Cursor's AI can now call the copilot directly
+   - Ask Cursor: "Use the data engineering copilot to create a new source"
 
 ## 📡 Option 4: REST API Server (For Team Use)
 
@@ -116,7 +116,7 @@ Create a simple FastAPI server to expose the agent as an API:
 ```python
 # api_server.py
 from fastapi import FastAPI
-from dataform_github_agent.agent import root_agent
+from data_engineering_copilot.agent import root_agent
 
 app = FastAPI()
 
@@ -177,7 +177,7 @@ export GOOGLE_APPLICATION_CREDENTIALS=/path/to/key.json
 
 ```python
 # In a Python file in Cursor
-from dataform_github_agent.agent import root_agent
+from data_engineering_copilot.agent import root_agent
 
 # Task 1: Create a new source
 result = root_agent.run(
@@ -196,7 +196,7 @@ print(result)
 
 1. **Ask Cursor's AI:**
    ```
-   "Use the dataform-github-agent to create a new staging table for user events"
+   "Use the data engineering copilot to create a new staging table for user events"
    ```
 
 2. **Cursor will:**
@@ -208,7 +208,7 @@ print(result)
 
 ```python
 # scripts/automate_pipeline.py
-from dataform_github_agent.agent import root_agent
+from data_engineering_copilot.agent import root_agent
 
 def create_pipeline_stage(stage_name: str, tags: list):
     """Automate pipeline stage creation."""

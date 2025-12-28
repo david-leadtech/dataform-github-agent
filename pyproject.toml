@@ -1,7 +1,7 @@
 [project]
-name = "dataform-github-agent"
+name = "data-engineering-copilot"
 version = "1.1.0"
-description = "AI-powered data engineering agent for Dataform, dbt, PySpark/Dataproc, Databricks, BigQuery, and GitHub"
+description = "AI-powered data engineering copilot for Dataform, dbt, PySpark/Dataproc, Databricks, BigQuery, and GitHub"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
@@ -32,7 +32,7 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["dataform_github_agent"]
+packages = ["data_engineering_copilot"]
 
 [tool.black]
 line-length = 100

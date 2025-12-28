@@ -3,7 +3,7 @@
 
 set -e
 
-echo "🚀 Setting up Dataform GitHub Agent for Cursor..."
+echo "🚀 Setting up Data Engineering Copilot for Cursor..."
 
 # Get the directory where this script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -21,7 +21,7 @@ echo "1. Create a .env file with your configuration (see README.md)"
 echo "2. Authenticate with Google Cloud:"
 echo "   gcloud auth application-default login"
 echo "3. Use in Cursor:"
-echo "   - Import: from dataform_github_agent.agent import root_agent"
+echo "   - Import: from data_engineering_copilot.agent import root_agent"
 echo "   - Or run: adk web"
 echo ""
 echo "📖 See CURSOR_INTEGRATION.md for detailed usage instructions"

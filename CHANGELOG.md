@@ -1,11 +1,14 @@
 # Changelog
 
-All notable changes to the Dataform GitHub Agent will be documented in this file.
+All notable changes to the Data Engineering Copilot will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [1.1.0] - 2025-01-28
+
+### Changed
+- **Project renamed**: Dataform GitHub Agent → Data Engineering Copilot (better reflects multi-platform capabilities)
 
 ### Added
 - **Databricks Integration (9 tools)**
@@ -22,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Automatic cluster management with auto-termination support
   - Library dependency management for PySpark jobs
 
-### Changed
+### Changed (continued)
 - Updated total tool count from 62 to 71 tools
 - Added Databricks configuration variables (`DATABRICKS_HOST`, `DATABRICKS_TOKEN`) to `config.py`
 - Updated agent instructions to include Databricks operations and best practices
@@ -34,7 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2024-12-26
 
 ### Added
-- Initial release of Dataform GitHub Agent
+- Initial release of Data Engineering Copilot (formerly Dataform GitHub Agent)
 
 - **Dataform Integration (15 tools)**
   - `read_file_from_dataform`: Read files from Dataform workspace
@@ -115,6 +118,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Total: 62 tools across all platforms
 
-[1.1.0]: https://github.com/david-leadtech/dataform-github-agent/releases/tag/v1.1.0
-[1.0.0]: https://github.com/david-leadtech/dataform-github-agent/releases/tag/v1.0.0
+[1.1.0]: https://github.com/david-leadtech/data-engineering-copilot/releases/tag/v1.1.0
+[1.0.0]: https://github.com/david-leadtech/data-engineering-copilot/releases/tag/v1.0.0
 

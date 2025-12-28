@@ -147,7 +147,7 @@ def create_dataproc_cluster(
         cluster = Cluster(
             project_id=config.project_id,
             cluster_name=cluster_name,
-            labels={"created_by": "dataform_github_agent"},
+            labels={"created_by": "data_engineering_copilot"},
             config=ClusterConfig(
                 gce_cluster_config=gce_cluster_config,
                 master_config=master_config,
@@ -384,7 +384,7 @@ def submit_pyspark_job(
         job = Job(
             placement=placement,
             pyspark_job=pyspark_job,
-            labels={"submitted_by": "dataform_github_agent"},
+            labels={"submitted_by": "data_engineering_copilot"},
         )
 
         # Submit the job
@@ -598,7 +598,7 @@ def create_dataproc_serverless_batch(
         # Create batch
         batch = Batch(
             pyspark_batch=pyspark_batch,
-            labels={"created_by": "dataform_github_agent"},
+            labels={"created_by": "data_engineering_copilot"},
             environment_config=environment_config,
             runtime_config=runtime_config,
         )

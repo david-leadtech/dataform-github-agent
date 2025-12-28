@@ -1,6 +1,6 @@
 # 🚀 Release Management
 
-This document explains how to create releases for the Dataform GitHub Agent.
+This document explains how to create releases for the Data Engineering Copilot.
 
 ## Quick Start
 
@@ -56,7 +56,7 @@ The script will:
 ### 3. Verify Release
 
 Check the GitHub releases page:
-https://github.com/david-leadtech/dataform-github-agent/releases
+https://github.com/david-leadtech/data-engineering-copilot/releases
 
 ## Semantic Versioning
 
