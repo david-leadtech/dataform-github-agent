@@ -58,6 +58,10 @@ class Config:
         "GITHUB_DEFAULT_BRANCH", "main"
     )
 
+    # Databricks Configuration (Optional)
+    self.databricks_host: Optional[str] = os.getenv("DATABRICKS_HOST")  # e.g., "https://your-workspace.cloud.databricks.com"
+    self.databricks_token: Optional[str] = os.getenv("DATABRICKS_TOKEN")  # Personal access token or OAuth token
+
   def validate(self) -> bool:
     """Validate that all required configuration is present."""
     if not self.project_id:

@@ -98,6 +98,17 @@ from .dataform_github_agent.dataproc_tools import (
     create_dataproc_serverless_batch,
     check_dataproc_serverless_batch_status,
 )
+from .dataform_github_agent.databricks_tools import (
+    create_databricks_cluster,
+    list_databricks_clusters,
+    get_databricks_cluster_status,
+    delete_databricks_cluster,
+    submit_databricks_pyspark_job,
+    submit_databricks_notebook_job,
+    check_databricks_job_status,
+    list_databricks_jobs,
+    get_databricks_job_runs,
+)
 
 # Define a tool configuration to block any write operations
 tool_config = BigQueryToolConfig(write_mode=WriteMode.BLOCKED)
@@ -115,12 +126,13 @@ root_agent = Agent(
     model=config.root_agent_model,
     name="data_engineering_agent",
     instruction=f"""
-      You are a comprehensive data engineering expert supporting BigQuery, Dataform, dbt, and PySpark/Dataproc.
+      You are a comprehensive data engineering expert supporting BigQuery, Dataform, dbt, PySpark/Dataproc, and Databricks.
 
       You can work with multiple data engineering tools:
       - Dataform: Generate SQLX code for BigQuery pipelines
       - dbt: Manage dbt projects, run models, tests, and generate documentation
       - PySpark/Dataproc: Submit PySpark jobs to Dataproc clusters or serverless batches
+      - Databricks: Manage Databricks clusters, submit PySpark jobs, and execute notebooks
       - BigQuery: Query, analyze, and optimize BigQuery workloads
 
       Plan the user task by breaking it into smaller steps.
@@ -170,6 +182,16 @@ root_agent = Agent(
       - Use create_dataproc_serverless_batch for serverless PySpark execution (no cluster management).
       - Use check_dataproc_serverless_batch_status to monitor serverless batch jobs.
       - PySpark files must be uploaded to GCS before submission.
+
+      Databricks Operations:
+      - Use create_databricks_cluster to create a new Databricks cluster.
+      - Use list_databricks_clusters to see available clusters.
+      - Use submit_databricks_pyspark_job to submit PySpark jobs to a cluster (files must be in Databricks workspace or DBFS).
+      - Use submit_databricks_notebook_job to execute Databricks notebooks.
+      - Use check_databricks_job_status to monitor job execution.
+      - Use list_databricks_jobs to list all jobs.
+      - Use get_databricks_job_runs to see recent job runs.
+      - Databricks requires DATABRICKS_HOST and DATABRICKS_TOKEN environment variables.
 
       Configuration:
       Default Project ID is {config.project_id} use this project ID for all BigQuery queries unless otherwise specified.
@@ -268,5 +290,15 @@ root_agent = Agent(
         list_dataproc_jobs,
         create_dataproc_serverless_batch,
         check_dataproc_serverless_batch_status,
+        # Databricks tools
+        create_databricks_cluster,
+        list_databricks_clusters,
+        get_databricks_cluster_status,
+        delete_databricks_cluster,
+        submit_databricks_pyspark_job,
+        submit_databricks_notebook_job,
+        check_databricks_job_status,
+        list_databricks_jobs,
+        get_databricks_job_runs,
     ],
 )

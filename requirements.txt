@@ -13,6 +13,9 @@ PyGithub>=2.1.1
 # dbt
 dbt-core>=1.7.0
 
+# Databricks
+databricks-sdk>=0.20.0
+
 # Utilities
 python-dotenv>=1.0.0
 protobuf>=4.24.4

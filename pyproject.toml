@@ -1,0 +1,44 @@
+[project]
+name = "dataform-github-agent"
+version = "1.1.0"
+description = "AI-powered data engineering agent for Dataform, dbt, PySpark/Dataproc, Databricks, BigQuery, and GitHub"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "google-adk>=0.1.0",
+    "google-cloud-bigquery>=3.11.4",
+    "google-cloud-dataform>=0.4.0",
+    "google-cloud-dataproc>=3.5.0",
+    "google-api-core>=2.15.0",
+    "google-auth>=2.23.0",
+    "google-cloud-core>=2.3.3",
+    "PyGithub>=2.1.1",
+    "dbt-core>=1.7.0",
+    "databricks-sdk>=0.20.0",
+    "python-dotenv>=1.0.0",
+    "protobuf>=4.24.4",
+    "typing-extensions>=4.8.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["dataform_github_agent"]
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
