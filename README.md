@@ -1,15 +1,12 @@
 # 🤖 Dataform GitHub Agent
 
-**Independent Project** - AI-powered agent that helps you build and manage Dataform pipelines with **GitHub integration**. This agent can:
+**AI-powered data engineering agent** that helps you build and manage data pipelines across multiple platforms:
 
-- ✅ Create and modify Dataform SQLX files
-- ✅ Compile and validate Dataform pipelines
-- ✅ **Read/write files directly to GitHub**
-- ✅ **Create branches and pull requests**
-- ✅ **Sync Dataform workspace with GitHub repository**
-- ✅ Query BigQuery tables and schemas
-- ✅ **Execute workflows by tags** (e.g., all PLTV pipeline stages)
-- ✅ **Clean up merged branches automatically**
+- ✅ **Dataform**: Create, modify, compile, and execute Dataform SQLX pipelines
+- ✅ **dbt**: Full dbt project management (run, test, compile, docs, seed, snapshot, etc.)
+- ✅ **PySpark/Dataproc**: Submit and manage PySpark jobs on Google Cloud Dataproc
+- ✅ **BigQuery**: Query, analyze, and optimize BigQuery workloads
+- ✅ **GitHub**: Full GitHub integration (branches, PRs, file sync, branch cleanup)
 
 ## 🚀 Quick Start
 
@@ -26,7 +23,7 @@ Create a `.env` file in this directory:
 
 ```bash
 # Google Cloud
-GOOGLE_CLOUD_PROJECT=rosseca-nova
+GOOGLE_CLOUD_PROJECT=your-project-id
 GOOGLE_CLOUD_LOCATION=EU
 
 # Vertex AI
@@ -43,7 +40,7 @@ DATAFORM_WORKSPACE_NAME=your-workspace
 # Create a token at: https://github.com/settings/tokens
 # Required scope: repo
 GITHUB_TOKEN=ghp_your_token_here
-GITHUB_REPO_PATH=leadtechcorp/dataform-pltv-pipeline
+GITHUB_REPO_PATH=your-org/your-repo
 GITHUB_DEFAULT_BRANCH=main
 ```
 
@@ -69,7 +66,7 @@ The `.env` file is a **local** file (not uploaded to GitHub) where you store you
 ```bash
 # .env (only on your machine, never in GitHub)
 GITHUB_TOKEN=ghp_abc123xyz  # Your secret token
-GOOGLE_CLOUD_PROJECT=rosseca-nova
+GOOGLE_CLOUD_PROJECT=your-project-id
 ```
 
 ## 🔧 Dependencies
@@ -80,12 +77,14 @@ Dependencies are the **Python libraries** the code needs to function:
 - `PyGithub`: To interact with GitHub
 - `google-cloud-dataform`: To work with Dataform
 - `google-cloud-bigquery`: To query BigQuery
+- `google-cloud-dataproc`: To manage Dataproc clusters and jobs
+- `dbt-core`: To work with dbt projects
 
 They are automatically installed with `pip install -r requirements.txt`.
 
 ## 💡 Usage Examples
 
-### Example 1: Create a new source and make a PR
+### Example 1: Create a new Dataform source and make a PR
 
 ```
 User: "Create a new source for Apple Ads and make a PR"
@@ -98,19 +97,7 @@ Agent:
 5. Creates PR automatically
 ```
 
-### Example 2: Sync Dataform with GitHub
-
-```
-User: "Sync all Dataform files to GitHub"
-
-Agent:
-1. Lists files in Dataform
-2. Reads each file from Dataform
-3. Writes each file to GitHub
-4. Commits with descriptive message
-```
-
-### Example 3: Execute pipeline by specific tags
+### Example 2: Execute Dataform pipeline by tags
 
 The agent can execute actions filtered by **any combination of tags from your Dataform project**. Tags are defined in each SQLX file's `config` block and are **project-specific**. Actions must have **ALL** specified tags to be included.
 
@@ -120,73 +107,17 @@ User: "Execute all PLTV staging tables"
 Agent:
 1. execute_dataform_by_tags(['pltv', 'staging'])
    - Executes only actions with BOTH 'pltv' AND 'staging' tags
-   
-User: "Execute all gold layer tables"
-
-Agent:
-1. execute_dataform_by_tags(['gold'])
-   - Executes all actions with 'gold' tag
-
-User: "Execute all silver layer tables"
-
-Agent:
-1. execute_dataform_by_tags(['silver'])
-   - Executes all actions with 'silver' tag
-
-User: "Execute all intermediate PLTV tables"
-
-Agent:
-1. execute_dataform_by_tags(['pltv', 'intermediate'])
-   - Executes only actions with both 'pltv' AND 'intermediate' tags
-
-User: "Execute all cost-related staging tables"
-
-Agent:
-1. execute_dataform_by_tags(['cost', 'staging'])
-   - Executes only actions with both 'cost' AND 'staging' tags
-   - Works if your project has files with tags: ["silver", "cost", "staging"]
 ```
 
-### Example 4: Monitor pipeline health
+**Tag Filtering Logic:**
+- Actions must have **ALL** specified tags to be included (AND logic)
+- **Tags are project-specific** - they must exist in your Dataform SQLX files
+- Each project defines its own tags in the `config { tags: [...] }` block
+- `['pltv', 'staging']` → Only actions with both 'pltv' AND 'staging' tags
+- `['gold']` → All actions with 'gold' tag
+- **Any combination of tags from your specific Dataform project files**
 
-```
-User: "Check the health of the PLTV pipeline"
-
-Agent:
-1. check_pipeline_health(tags=['pltv'])
-   - Analyzes recent workflow executions
-   - Calculates success rate, average duration
-   - Identifies failure patterns
-   - Provides recommendations
-```
-
-### Example 5: Analyze query performance
-
-```
-User: "Analyze the performance of job abc123"
-
-Agent:
-1. analyze_query_performance('abc123')
-   - Extracts bytes processed, slot usage, duration
-   - Calculates cost estimate
-   - Identifies optimization opportunities
-   - Suggests improvements
-```
-
-### Example 6: Generate pipeline documentation
-
-```
-User: "Generate documentation for the pipeline"
-
-Agent:
-1. generate_pipeline_documentation()
-   - Parses all SQLX files
-   - Extracts dependencies, tags, descriptions
-   - Generates markdown with dependency graph
-   - Creates comprehensive documentation
-```
-
-### Example 7: Run dbt models and tests
+### Example 3: Run dbt models and tests
 
 ```
 User: "Run all staging models in the dbt project and run tests"
@@ -198,7 +129,7 @@ Agent:
    - Runs tests for staging models
 ```
 
-### Example 8: Generate dbt documentation
+### Example 4: Generate dbt documentation
 
 ```
 User: "Generate documentation for the dbt project"
@@ -209,7 +140,7 @@ Agent:
    - Creates documentation artifacts
 ```
 
-### Example 9: Submit PySpark job to Dataproc
+### Example 5: Submit PySpark job to Dataproc
 
 ```
 User: "Run the PySpark script on Dataproc"
@@ -225,7 +156,7 @@ Agent:
    - Monitors job execution
 ```
 
-### Example 10: Create serverless PySpark batch
+### Example 6: Create serverless PySpark batch
 
 ```
 User: "Run PySpark without managing a cluster"
@@ -240,19 +171,48 @@ Agent:
    - Monitors batch execution
 ```
 
-**Tag Filtering Logic:**
-- Actions must have **ALL** specified tags to be included (AND logic)
-- **Tags are project-specific** - they must exist in your Dataform SQLX files
-- Each project defines its own tags in the `config { tags: [...] }` block
-- `['pltv', 'staging']` → Only actions with both 'pltv' AND 'staging' tags
-- `['gold']` → All actions with 'gold' tag
-- `['silver', 'pltv', 'staging']` → Only actions with all three tags
-- `['cost']` → All actions with 'cost' tag
-- **Any combination of tags from your specific Dataform project files**
+### Example 7: Monitor pipeline health
+
+```
+User: "Check the health of the PLTV pipeline"
+
+Agent:
+1. check_pipeline_health(tags=['pltv'])
+   - Analyzes recent workflow executions
+   - Calculates success rate, average duration
+   - Identifies failure patterns
+   - Provides recommendations
+```
+
+### Example 8: Analyze query performance
+
+```
+User: "Analyze the performance of job abc123"
+
+Agent:
+1. analyze_query_performance('abc123')
+   - Extracts bytes processed, slot usage, duration
+   - Calculates cost estimate
+   - Identifies optimization opportunities
+   - Suggests improvements
+```
+
+### Example 9: Generate pipeline documentation
+
+```
+User: "Generate documentation for the pipeline"
+
+Agent:
+1. generate_pipeline_documentation()
+   - Parses all SQLX files
+   - Extracts dependencies, tags, descriptions
+   - Generates markdown with dependency graph
+   - Creates comprehensive documentation
+```
 
 ## 🛠️ Available Tools
 
-### Dataform
+### Dataform (15 tools)
 - `read_file_from_dataform`: Read SQLX files
 - `write_file_to_dataform`: Write/modify files
 - `compile_dataform`: Compile pipeline and view DAG
@@ -267,28 +227,9 @@ Agent:
 - `generate_pipeline_documentation`: Automatically generate comprehensive pipeline documentation
 - `analyze_assertion_results`: Analyze data quality assertion results from workflow executions
 - `check_data_quality_anomalies`: Detect data quality issues and trends over time
+- `delete_file_from_dataform`: Delete files from Dataform workspace
 
-### GitHub
-- `read_file_from_github`: Read files from GitHub
-- `write_file_to_github`: Write files with commit
-- `create_github_branch`: Create branches
-- `create_github_pull_request`: Create PRs
-- `delete_github_branch`: Delete branches (useful after merging PRs)
-- `get_merged_pull_requests`: List merged PRs
-- `cleanup_merged_branches`: Automatically clean up merged branches
-- `sync_dataform_to_github`: Sync Dataform → GitHub
-- `list_github_files`: List files in directories
-- `get_github_file_history`: View commit history for files
-
-### BigQuery
-- `sample_table_data_tool`: View table data
-- `bigquery_toolset`: SQL queries
-- `analyze_query_performance`: Analyze BigQuery job performance metrics (bytes, slots, cost, duration)
-- `get_query_execution_plan`: Get detailed query execution plan with bottleneck identification
-- `estimate_query_cost`: Estimate query cost before execution using dry-run
-- `check_data_freshness`: Check when tables were last updated and detect stale data
-
-### dbt
+### dbt (14 tools)
 - `dbt_run`: Execute dbt models (with selectors, tags, or specific models)
 - `dbt_test`: Run data quality tests
 - `dbt_compile`: Compile dbt project without executing (validation)
@@ -305,7 +246,7 @@ Agent:
 - `dbt_source_freshness`: Check when source data was last updated
 - `dbt_parse`: Parse and validate dbt project syntax
 
-### PySpark/Dataproc
+### PySpark/Dataproc (9 tools)
 - `create_dataproc_cluster`: Create a new Dataproc cluster
 - `list_dataproc_clusters`: List all clusters in a region
 - `get_dataproc_cluster_details`: Get detailed cluster information
@@ -316,157 +257,103 @@ Agent:
 - `create_dataproc_serverless_batch`: Create serverless PySpark batch (no cluster needed)
 - `check_dataproc_serverless_batch_status`: Check serverless batch status
 
-## 🤔 Is This a Complete Data Engineer?
+### BigQuery (6 tools)
+- `sample_table_data_tool`: View table data
+- `bigquery_toolset`: SQL queries (via ADK BigQuery toolset)
+- `analyze_query_performance`: Analyze BigQuery job performance metrics (bytes, slots, cost, duration)
+- `get_query_execution_plan`: Get detailed query execution plan with bottleneck identification
+- `estimate_query_cost`: Estimate query cost before execution using dry-run
+- `check_data_freshness`: Check when tables were last updated and detect stale data
 
-The agent can handle **many data engineering tasks**, but it's not a complete replacement for a data engineer. Here's what it can and cannot do:
+### GitHub (11 tools)
+- `read_file_from_github`: Read files from GitHub
+- `write_file_to_github`: Write files with commit
+- `create_github_branch`: Create branches
+- `create_github_pull_request`: Create PRs
+- `create_github_repository`: Create new GitHub repositories
+- `delete_github_branch`: Delete branches (useful after merging PRs)
+- `get_merged_pull_requests`: List merged PRs
+- `cleanup_merged_branches`: Automatically clean up merged branches
+- `sync_dataform_to_github`: Sync Dataform → GitHub
+- `list_github_files`: List files in directories
+- `get_github_file_history`: View commit history for files
 
-### ✅ What the Agent CAN Do (Current Capabilities)
+### GCS (4 tools)
+- `list_bucket_files_tool`: List files in GCS bucket
+- `read_gcs_file_tool`: Read files from GCS
+- `validate_bucket_exists_tool`: Check if bucket exists
+- `validate_file_exists_tool`: Check if file exists in bucket
 
-**Pipeline Development:**
-- ✅ Create and modify SQLX files (tables, views, incremental tables)
-- ✅ Design multi-stage pipelines with dependencies
-- ✅ Configure incremental processing, partitioning, assertions
-- ✅ Compile and validate pipelines
-- ✅ Execute workflows by name or tags
+**Total: 59 tools** across all platforms
 
-**Version Control & Collaboration:**
-- ✅ Sync Dataform ↔ GitHub
-- ✅ Create branches and pull requests
-- ✅ Manage file history and changes
-- ✅ Clean up merged branches
+## ✅ Capabilities
 
-**Data Operations:**
-- ✅ Query BigQuery tables and schemas
-- ✅ Sample table data
-- ✅ Read/write files in Dataform workspace
+### Pipeline Development
+- Create and modify SQLX files (tables, views, incremental tables)
+- Design multi-stage pipelines with dependencies
+- Configure incremental processing, partitioning, assertions
+- Compile and validate pipelines
+- Execute workflows by name or tags
 
-**dbt Operations:**
-- ✅ Run dbt models with selectors, tags, or specific models
-- ✅ Execute data quality tests
-- ✅ Compile and validate dbt projects
-- ✅ Generate documentation
-- ✅ Manage seeds and snapshots
-- ✅ Check source data freshness
-- ✅ Execute custom macros
-- ✅ List and preview resources
+### dbt Project Management
+- Run dbt models with selectors, tags, or specific models
+- Execute data quality tests
+- Compile and validate dbt projects
+- Generate documentation (manifest.json, catalog.json)
+- Manage seeds and snapshots
+- Check source data freshness
+- Execute custom macros
+- List and preview resources
 
-**PySpark/Dataproc Operations:**
-- ✅ Create and manage Dataproc clusters
-- ✅ Submit PySpark jobs to clusters
-- ✅ Create serverless PySpark batches (no cluster management)
-- ✅ Monitor job and batch execution
-- ✅ List and filter jobs by type or cluster
+### PySpark/Dataproc Operations
+- Create and manage Dataproc clusters
+- Submit PySpark jobs to clusters
+- Create serverless PySpark batches (no cluster management)
+- Monitor job and batch execution
+- List and filter jobs by type or cluster
 
-**Performance & Monitoring:**
-- ✅ Analyze BigQuery query performance and identify optimization opportunities
-- ✅ Get detailed query execution plans and identify bottlenecks
-- ✅ Estimate query costs before execution
-- ✅ Check data freshness and detect stale data
-- ✅ Monitor workflow health and track success rates over time
-- ✅ Identify and troubleshoot failed workflows
-- ✅ Check overall pipeline health with recommendations
-- ✅ Analyze data quality assertion results
-- ✅ Detect data quality anomalies and trends
+### Version Control & Collaboration
+- Sync Dataform ↔ GitHub
+- Create branches and pull requests
+- Manage file history and changes
+- Clean up merged branches
+- Create new GitHub repositories
 
-### ❌ What the Agent CANNOT Do (Missing Capabilities)
+### Performance & Monitoring
+- Analyze BigQuery query performance and identify optimization opportunities
+- Get detailed query execution plans and identify bottlenecks
+- Estimate query costs before execution
+- Check data freshness and detect stale data
+- Monitor workflow health and track success rates over time
+- Identify and troubleshoot failed workflows
+- Check overall pipeline health with recommendations
+- Analyze data quality assertion results
+- Detect data quality anomalies and trends
 
-**Performance & Optimization:**
-- ✅ Analyze query performance and suggest optimizations
-- ✅ Estimate BigQuery costs before execution
-- ✅ Analyze query execution plans and identify bottlenecks
-- ⚠️ Optimize JOINs, aggregations, or window functions *(Partially - can identify issues, but optimization requires deeper analysis)*
-- ⚠️ Recommend partitioning strategies *(Could be added - requires schema analysis)*
+### Documentation
+- Generate comprehensive pipeline documentation with dependency graphs
+- Generate dbt documentation (manifest.json, catalog.json)
 
-**Monitoring & Operations:**
-- ✅ Monitor pipeline health and track trends
-- ✅ Track data freshness and detect stale data
-- ✅ Analyze failure patterns and get recommendations
-- ⚠️ Manage retry logic and error handling *(Could be added - workflow configuration)*
-- ✅ Monitor BigQuery slot usage and efficiency
+## ❌ Limitations
 
-**Advanced Data Engineering:**
-- ❌ Design data models and schemas from scratch *(Hard - requires business context)*
-- ❌ Create complex data transformations without examples *(Hard - requires deep understanding)*
-- ❌ Understand business requirements deeply *(Very Hard - requires human judgment)*
-- ❌ Make architectural decisions (e.g., when to use incremental vs full refresh) *(Hard - requires experience)*
-- ❌ Debug complex data quality issues *(Could be added - requires analysis tools)*
-- ❌ Optimize memory usage (like the PLTV pipeline refactoring) *(Hard - requires deep analysis)*
+The agent **cannot** do the following (these require human judgment, business context, or deep expertise):
 
-**Documentation & Knowledge:**
-- ✅ Generate comprehensive pipeline documentation with dependency graphs
-- ⚠️ Create data dictionaries *(Could be added - requires schema analysis)*
-- ⚠️ Document business logic and transformations *(Hard - requires understanding intent)*
-- ⚠️ Maintain runbooks and troubleshooting guides *(Could be added - template-based)*
+- **Design data models and schemas from scratch** (requires business context)
+- **Create complex data transformations without examples** (requires deep understanding)
+- **Understand business requirements deeply** (requires human judgment)
+- **Make architectural decisions** (e.g., when to use incremental vs full refresh - requires experience)
+- **Optimize memory usage for complex pipelines** (requires deep analysis)
+- **Document business logic and transformations** (requires understanding intent)
+- **Make strategic decisions** (requires business knowledge)
 
-### 🎯 Verdict: **Pseudo-Data Engineer**
+The agent is a **powerful assistant** that excels at:
+- Executing routine data engineering tasks
+- Following patterns and examples
+- Managing version control and deployments
+- Handling repetitive pipeline modifications
+- Automating monitoring and documentation
 
-The agent is a **powerful assistant** that can:
-- Execute routine data engineering tasks
-- Follow patterns and examples
-- Manage version control and deployments
-- Handle repetitive pipeline modifications
-
-But it **cannot replace** a data engineer for:
-- Strategic decisions
-- Performance optimization
-- Complex problem-solving
-- Business logic understanding
-- Architecture design
-
-**Best Use Case:** The agent excels as a **copilot** that handles the mechanical aspects of data engineering, allowing data engineers to focus on design, optimization, and problem-solving.
-
-## 🚧 Future Enhancements
-
-Based on Dataform documentation, we could add support for:
-
-1. **Advanced Assertions**: More complex data quality validations
-   - Custom assertion logic
-   - Multi-table assertions
-   - Conditional assertions
-
-2. **JavaScript Functions**: Reusable macros and functions
-   - Create and manage JavaScript functions
-   - Use functions in SQLX files
-   - Share common logic across files
-
-3. **Workflow Scheduling**: Automatic workflow scheduling
-   - Create scheduled workflows programmatically
-   - Manage cron-based schedules
-   - Configure workflow triggers
-
-4. **Data Quality Tests**: Advanced quality testing
-   - Custom test definitions
-   - Test result monitoring
-   - Automated quality checks
-
-5. **Custom Operations**: Custom operations
-   - Define custom SQL operations
-   - Manage operation dependencies
-   - Execute custom transformations
-
-**Additional Enhancements to Consider:**
-
-**High Value & Feasible (✅ IMPLEMENTED):**
-- ✅ Query performance analysis and optimization suggestions
-- ✅ Cost estimation before execution
-- ✅ Automated monitoring and alerting
-- ✅ Pipeline documentation generation
-- ✅ Data quality anomaly detection
-- ✅ Query execution plan analysis
-- ✅ Data freshness tracking
-
-**Medium Value & Feasible (Could Add):**
-- ⚠️ Schema analysis and recommendations (requires BigQuery schema API)
-- ⚠️ Failure pattern analysis (requires log aggregation)
-- ⚠️ Automated retry logic (requires workflow configuration)
-
-**Low Value or Hard to Implement (Maybe Skip):**
-- ❌ Business requirement understanding (requires human judgment)
-- ❌ Architectural decision-making (requires experience and context)
-- ❌ Deep memory optimization (requires complex analysis)
-- ❌ Business logic documentation (requires understanding intent)
-
-**Recommendation:** Focus on adding the "High Value & Feasible" features first, as they provide immediate value and are technically achievable using existing APIs.
+**Best Use Case:** The agent works best as a **copilot** that handles the mechanical aspects of data engineering, allowing data engineers to focus on design, optimization, and strategic problem-solving.
 
 ## 📚 Additional Resources
 
@@ -474,4 +361,5 @@ Based on Dataform documentation, we could add support for:
 - [Dataform Documentation](https://cloud.google.com/dataform/docs)
 - [Dataform API Reference](https://cloud.google.com/dataform/docs/reference/rest)
 - [Dataform Core Reference](https://cloud.google.com/dataform/docs/reference/dataform-core)
-
+- [dbt Documentation](https://docs.getdbt.com/)
+- [Dataproc Documentation](https://cloud.google.com/dataproc/docs)
