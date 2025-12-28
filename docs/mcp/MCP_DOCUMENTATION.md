@@ -2,6 +2,8 @@
 
 Complete guide for using the Data Engineering Copilot as an MCP (Model Context Protocol) server in Cursor.
 
+> **← [Back to README](../../README.md)** | **[View All Documentation](../../README.md#-documentation)**
+
 ## 📋 Table of Contents
 
 1. [What is MCP?](#what-is-mcp)
@@ -514,8 +516,8 @@ You can have multiple MCP servers configured:
 1. ✅ Configure MCP server (see Quick Start)
 2. ✅ Test with a simple prompt
 3. ✅ Try different use cases
-4. 📖 Read [TOOLS_REFERENCE.md](TOOLS_REFERENCE.md) for all available tools
-5. 📖 Read [API_DOCUMENTATION.md](API_DOCUMENTATION.md) for REST API usage
+4. 📖 Read [Tools Reference](../reference/TOOLS_REFERENCE.md) for all available tools
+5. 📖 Read [API Documentation](../api/API_DOCUMENTATION.md) for REST API usage
 
 ---
 
@@ -523,5 +525,5 @@ You can have multiple MCP servers configured:
 
 - **Issues**: Check [Troubleshooting](#troubleshooting) section
 - **Documentation**: See [README.md](README.md) for full agent documentation
-- **Tools Reference**: See [TOOLS_REFERENCE.md](TOOLS_REFERENCE.md) for all tools
+- **Tools Reference**: See [Tools Reference](../reference/TOOLS_REFERENCE.md) for all tools
 

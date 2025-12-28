@@ -2,6 +2,8 @@
 
 Get the Data Engineering Copilot running in 5 minutes.
 
+> **← [Back to README](README.md)** | **[View All Documentation](README.md#-documentation)**
+
 ## 🚀 Start the API Server
 
 ### Option 1: Using the Script (Recommended)
@@ -117,8 +119,8 @@ gcloud auth application-default login
 
 ## 📚 Next Steps
 
-- **API Documentation**: See [API_DOCUMENTATION.md](API_DOCUMENTATION.md)
-- **Tools Reference**: See [TOOLS_REFERENCE.md](TOOLS_REFERENCE.md)
-- **MCP Setup**: See [MCP_DOCUMENTATION.md](MCP_DOCUMENTATION.md)
-- **Cursor Integration**: See [CURSOR_INTEGRATION.md](CURSOR_INTEGRATION.md)
+- **API Documentation**: See [docs/api/API_DOCUMENTATION.md](docs/api/API_DOCUMENTATION.md)
+- **Tools Reference**: See [docs/reference/TOOLS_REFERENCE.md](docs/reference/TOOLS_REFERENCE.md)
+- **MCP Setup**: See [docs/mcp/MCP_DOCUMENTATION.md](docs/mcp/MCP_DOCUMENTATION.md)
+- **Cursor Integration**: See [docs/integration/CURSOR_INTEGRATION.md](docs/integration/CURSOR_INTEGRATION.md)
 

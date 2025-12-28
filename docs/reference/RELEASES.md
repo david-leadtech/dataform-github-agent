@@ -2,6 +2,8 @@
 
 This document explains how to create releases for the Data Engineering Copilot.
 
+> **← [Back to README](../../README.md)** | **[View All Documentation](../../README.md#-documentation)**
+
 ## Quick Start
 
 ```bash

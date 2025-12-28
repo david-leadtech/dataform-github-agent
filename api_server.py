@@ -107,10 +107,11 @@ from data_engineering_copilot import (
 # Create FastAPI app
 app = FastAPI(
     title="Data Engineering Copilot API",
-    description="REST API for the Data Engineering Copilot - AI-powered data engineering agent",
-    version="1.1.0",
-    docs_url="/docs",
-    redoc_url="/redoc"
+    description="REST API for the Data Engineering Copilot - AI-powered data engineering agent with 65+ tools for Dataform, dbt, PySpark (Dataproc/Databricks), BigQuery, and GitHub",
+    version="1.2.0",
+    docs_url="/docs",  # Swagger UI
+    redoc_url="/redoc",  # ReDoc documentation
+    openapi_url="/openapi.json"  # OpenAPI schema
 )
 
 # Enable CORS for local development

@@ -2,6 +2,8 @@
 
 The agent can be used **locally** in Cursor in several ways. You don't need to deploy it to GCP - it runs on your machine and connects to GCP services via APIs.
 
+> **← [Back to README](../../README.md)** | **[View All Documentation](../../README.md#-documentation)**
+
 ## 🎯 Option 1: Direct Python Usage in Cursor (Simplest)
 
 You can import and use the agent directly in Python scripts within Cursor:
@@ -76,7 +78,7 @@ Run the agent as a local web server and interact with it through a browser:
 
 The MCP server is **already implemented**! It exposes the agent's tools directly to Cursor's AI.
 
-**📖 For complete MCP documentation, see [MCP_DOCUMENTATION.md](MCP_DOCUMENTATION.md)**
+**📖 For complete MCP documentation, see [MCP Documentation](../mcp/MCP_DOCUMENTATION.md)**
 
 ### Quick Setup
 
@@ -110,7 +112,7 @@ The MCP server is **already implemented**! It exposes the agent's tools directly
    - Ask Cursor: "Use the data engineering copilot to create a new source"
    - Cursor's AI can now call the copilot directly
 
-**See [MCP_DOCUMENTATION.md](MCP_DOCUMENTATION.md) for:**
+**See [MCP Documentation](../mcp/MCP_DOCUMENTATION.md) for:**
 - Complete setup guide
 - Configuration examples
 - Troubleshooting
@@ -291,6 +293,6 @@ A: Yes! Each person runs it locally with their own credentials. Or set up the RE
 ## 🔗 Related Documentation
 
 - [README.md](README.md) - Full agent documentation
-- [RELEASES.md](RELEASES.md) - Release management
-- [CHANGELOG.md](CHANGELOG.md) - Version history
+- [Releases](../reference/RELEASES.md) - Release management
+- [Changelog](../reference/CHANGELOG.md) - Version history
 
