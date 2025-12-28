@@ -5,6 +5,49 @@ All notable changes to the Data Engineering Copilot will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2025-01-28
+
+### Added
+- **REST API Server** (`api_server.py`)
+  - FastAPI-based REST API with full tool access
+  - 65+ tools organized by category (dataform, github, bigquery, dbt, dataproc, databricks)
+  - High-level agent endpoint (`/agent/run`) for intelligent task execution
+  - Direct tool execution endpoints (`/tools/{category}/{tool_name}`)
+  - Async task execution support
+  - Interactive API documentation (Swagger UI and ReDoc)
+  - Health check and status endpoints
+  - Complete request/response documentation
+
+- **MCP Server** (`mcp_server.py`)
+  - Model Context Protocol server for Cursor integration
+  - Direct integration with Cursor's AI
+  - Natural language interface via `run_agent_task` tool
+  - Async execution support
+
+- **Comprehensive Documentation**
+  - `API_DOCUMENTATION.md`: Complete API reference with curl, Python, and Postman examples
+  - `MCP_DOCUMENTATION.md`: Full MCP setup guide with troubleshooting
+  - `TOOLS_REFERENCE.md`: Detailed reference for all 65 tools with parameters and examples
+  - `QUICK_START.md`: Step-by-step server startup guide
+  - `PLTV_CAPABILITIES_ANALYSIS.md`: Analysis of copilot capabilities for PLTV pipeline
+  - `PLTV_MIGRATION_GUIDE.md`: Guide for using copilot with PLTV pipeline
+
+- **Startup Scripts**
+  - `scripts/start_api_server.sh`: Start REST API server
+  - `scripts/start_mcp_server.sh`: Start MCP server with setup instructions
+  - `scripts/update_remote_after_rename.sh`: Update git remote after repository rename
+
+### Changed
+- Updated README.md to feature REST API server as first option
+- Enhanced CURSOR_INTEGRATION.md with MCP and API details
+- Updated all repository name references from `dataform-github-agent` to `data-engineering-copilot`
+- Improved documentation structure and cross-references
+
+### Dependencies
+- Added `fastapi>=0.104.0` for REST API server
+- Added `uvicorn[standard]>=0.24.0` for ASGI server
+- Added `mcp>=0.9.0` for MCP server support
+
 ## [1.1.0] - 2025-01-28
 
 ### Changed
