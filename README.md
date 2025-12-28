@@ -95,7 +95,7 @@ gcloud auth application-default login
 
 ### Integration
 - 📘 **[Cursor Integration](docs/integration/CURSOR_INTEGRATION.md)** → Use the copilot in Cursor IDE (all methods: MCP, API, direct)
-- 📘 **[MCP Documentation](docs/mcp/MCP_DOCUMENTATION.md)** → Complete MCP server setup guide for Cursor
+- 📘 **[MCP Documentation](docs/mcp/MCP_DOCUMENTATION.md)** → Complete MCP server setup guide for Cursor and Claude Desktop
 
 ### Reference
 - 📘 **[Releases](docs/reference/RELEASES.md)** → Release management and semantic versioning
@@ -122,15 +122,15 @@ curl -X POST http://localhost:8000/agent/run \
 - ✅ 65+ tools organized by category
 - ✅ Async task execution support
 
-### 2. MCP Server (For Cursor)
+### 2. MCP Server (For Cursor & Claude Desktop)
 
-Configure in Cursor settings and use directly:
+Configure in Cursor or Claude Desktop settings and use directly:
 
 ```
 Use the data engineering copilot to create a new Dataform source
 ```
 
-See [MCP Documentation](docs/mcp/MCP_DOCUMENTATION.md) for setup.
+See [MCP Documentation](docs/mcp/MCP_DOCUMENTATION.md) for setup instructions for both clients.
 
 ### 3. Direct Python
 

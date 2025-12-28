@@ -1,32 +1,46 @@
 # Data Engineering Copilot - MCP Server Documentation
 
-Complete guide for using the Data Engineering Copilot as an MCP (Model Context Protocol) server in Cursor.
+Complete guide for using the Data Engineering Copilot as an MCP (Model Context Protocol) server in **Cursor** and **Claude Desktop**.
 
 > **← [Back to README](../../README.md)** | **[View All Documentation](../../README.md#-documentation)**
 
 ## 📋 Table of Contents
 
 1. [What is MCP?](#what-is-mcp)
-2. [Quick Start](#quick-start)
-3. [Installation](#installation)
-4. [Configuration](#configuration)
-5. [Usage Examples](#usage-examples)
-6. [Available Tools](#available-tools)
-7. [Troubleshooting](#troubleshooting)
-8. [Advanced Configuration](#advanced-configuration)
+2. [Supported Clients](#supported-clients)
+3. [Quick Start](#quick-start)
+4. [Installation](#installation)
+5. [Configuration](#configuration)
+   - [Cursor Configuration](#cursor-configuration)
+   - [Claude Desktop Configuration](#claude-desktop-configuration)
+6. [Usage Examples](#usage-examples)
+7. [Available Tools](#available-tools)
+8. [Troubleshooting](#troubleshooting)
+9. [Advanced Configuration](#advanced-configuration)
 
 ---
 
 ## What is MCP?
 
-**Model Context Protocol (MCP)** is a protocol that allows AI assistants (like Cursor's AI) to interact with external tools and services. By configuring the Data Engineering Copilot as an MCP server, Cursor's AI can directly call the copilot's tools.
+**Model Context Protocol (MCP)** is an open standard protocol that allows AI assistants to interact with external tools and services. By configuring the Data Engineering Copilot as an MCP server, AI assistants can directly call the copilot's tools.
 
 ### Benefits
 
-- ✅ **Direct Integration**: Cursor's AI can use the copilot without you writing code
-- ✅ **Natural Language**: Just ask Cursor to use the copilot
+- ✅ **Direct Integration**: AI assistants can use the copilot without you writing code
+- ✅ **Natural Language**: Just ask your AI assistant to use the copilot
 - ✅ **No API Calls**: Works locally, no HTTP requests needed
-- ✅ **Seamless**: Feels like a native Cursor feature
+- ✅ **Seamless**: Feels like a native feature
+- ✅ **Standard Protocol**: Works with any MCP-compatible client
+
+## Supported Clients
+
+The Data Engineering Copilot MCP server works with:
+
+- ✅ **Cursor IDE** - Full integration with Cursor's AI
+- ✅ **Claude Desktop** - Native support for Claude Desktop
+- ✅ **Any MCP-compatible client** - The protocol is open and standardized
+
+> **Note:** This guide provides instructions for both Cursor and Claude Desktop. The setup is very similar for both.
 
 ---
 
@@ -99,7 +113,7 @@ Use the data engineering copilot to check the health of the data pipeline
 ### Prerequisites
 
 - Python 3.8+
-- Cursor IDE
+- **Cursor IDE** or **Claude Desktop** (or any MCP-compatible client)
 - Google Cloud credentials configured
 - (Optional) GitHub token for GitHub tools
 - (Optional) Databricks token for Databricks tools
@@ -130,11 +144,22 @@ Use the data engineering copilot to check the health of the data pipeline
 
 ---
 
-## Configuration
+## Configuration Details
+
+### Cursor Configuration File Location
+
+- **macOS/Linux**: `~/.cursor/mcp.json`
+- **Windows**: `C:\Users\[YourUsername]\.cursor\mcp.json`
+
+### Claude Desktop Configuration File Location
+
+- **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+- **Linux**: `~/.config/Claude/claude_desktop_config.json`
 
 ### Basic Configuration
 
-Minimum configuration in `~/.cursor/mcp.json`:
+Minimum configuration (same for both Cursor and Claude Desktop):
 
 ```json
 {
@@ -189,10 +214,7 @@ Instead of setting environment variables in the MCP config, you can use a `.env`
 
 2. The agent will automatically load it (via `python-dotenv`)
 
-### Configuration File Locations
-
-- **macOS/Linux**: `~/.cursor/mcp.json`
-- **Windows**: `C:\Users\[YourUsername]\.cursor\mcp.json`
+> **Note:** The configuration format is identical for both Cursor and Claude Desktop. Only the file location differs.
 
 ---
 
@@ -200,19 +222,19 @@ Instead of setting environment variables in the MCP config, you can use a `.env`
 
 ### Example 1: Create a Dataform Source
 
-**In Cursor chat:**
+**In Cursor or Claude Desktop:**
 ```
 Use the data engineering copilot to create a new Dataform source for Apple Ads
 ```
 
 **What happens:**
-1. Cursor calls the MCP tool `run_agent_task`
+1. Your AI assistant (Cursor/Claude) calls the MCP tool `run_agent_task`
 2. The copilot creates the source file
 3. Returns confirmation
 
 ### Example 2: Debug a Pipeline
 
-**In Cursor chat:**
+**In Cursor or Claude Desktop:**
 ```
 Use the data engineering copilot to debug the data pipeline and find any failed jobs
 ```
@@ -225,7 +247,7 @@ Use the data engineering copilot to debug the data pipeline and find any failed 
 
 ### Example 3: Create a GitHub PR
 
-**In Cursor chat:**
+**In Cursor or Claude Desktop:**
 ```
 Use the data engineering copilot to create a branch, add a new staging table, and create a PR
 ```
@@ -238,7 +260,7 @@ Use the data engineering copilot to create a branch, add a new staging table, an
 
 ### Example 4: Check Pipeline Health
 
-**In Cursor chat:**
+**In Cursor or Claude Desktop:**
 ```
 Use the data engineering copilot to check the health of all staging pipelines
 ```
@@ -251,7 +273,7 @@ Use the data engineering copilot to check the health of all staging pipelines
 
 ### Example 5: Optimize a Query
 
-**In Cursor chat:**
+**In Cursor or Claude Desktop:**
 ```
 Use the data engineering copilot to analyze and optimize this BigQuery job: bqjob_abc123
 ```
@@ -343,14 +365,16 @@ Make the script executable:
 chmod +x mcp_server.py
 ```
 
-### Problem: MCP Server Not Appearing in Cursor
+### Problem: MCP Server Not Appearing
 
 **Checklist:**
 1. ✅ Config file is valid JSON (check for syntax errors)
 2. ✅ Path is absolute (not relative)
 3. ✅ Python path is correct
-4. ✅ Cursor was restarted after config change
-5. ✅ Check Cursor's MCP logs (Settings → MCP → View Logs)
+4. ✅ Client (Cursor/Claude Desktop) was restarted after config change
+5. ✅ Check client's MCP logs:
+   - **Cursor**: Settings → MCP → View Logs
+   - **Claude Desktop**: Settings → Developer → MCP Logs
 
 ### Problem: "Environment variable not set"
 
@@ -358,7 +382,7 @@ chmod +x mcp_server.py
 Either:
 1. Add to MCP config `env` section (see Configuration above)
 2. Or create `.env` file in agent directory
-3. Or set in your shell before starting Cursor
+3. Or set in your shell before starting your client (Cursor/Claude Desktop)
 
 ### Problem: "Google Cloud authentication failed"
 
@@ -457,20 +481,20 @@ You can have multiple MCP servers configured:
 
 ## How It Works
 
-1. **You ask Cursor** to use the copilot
-2. **Cursor calls** the MCP tool `run_agent_task` with your prompt
+1. **You ask your AI assistant** (Cursor/Claude Desktop) to use the copilot
+2. **AI assistant calls** the MCP tool `run_agent_task` with your prompt
 3. **MCP server** receives the request via stdio
 4. **Agent executes** the task using appropriate tools
-5. **Response returns** to Cursor via MCP
-6. **Cursor displays** the result
+5. **Response returns** to your AI assistant via MCP
+6. **AI assistant displays** the result
 
 ### Architecture
 
 ```
-┌─────────┐
-│ Cursor  │
-│   AI    │
-└────┬────┘
+┌──────────────┐
+│ Cursor/Claude│
+│   Desktop    │
+└──────┬───────┘
      │ MCP Protocol (stdio)
      ▼
 ┌─────────────────┐
