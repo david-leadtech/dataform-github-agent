@@ -1,0 +1,20 @@
+# Google Cloud & ADK
+google-adk>=0.1.0
+google-cloud-bigquery>=3.11.4
+google-cloud-dataform>=0.4.0
+google-cloud-dataproc>=3.5.0
+google-api-core>=2.15.0
+google-auth>=2.23.0
+google-cloud-core>=2.3.3
+
+# GitHub Integration
+PyGithub>=2.1.1
+
+# dbt
+dbt-core>=1.7.0
+
+# Utilities
+python-dotenv>=1.0.0
+protobuf>=4.24.4
+typing-extensions>=4.8.0
+
