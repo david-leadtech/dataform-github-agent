@@ -325,7 +325,7 @@ async def run_agent(request: AgentRequest, background_tasks: BackgroundTasks):
     
     Examples:
     - "Create a new Dataform source for Apple Ads"
-    - "Debug the PLTV pipeline and find failed jobs"
+    - "Debug the data pipeline and find failed jobs"
     - "Check the health of all pipelines"
     - "Create a PR with the new staging table"
     """

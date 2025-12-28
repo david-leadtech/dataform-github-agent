@@ -148,7 +148,7 @@ The REST API server is **already implemented**! It exposes the agent as a FastAP
    ```bash
    curl -X POST http://localhost:8000/agent/run \
      -H 'Content-Type: application/json' \
-     -d '{"prompt": "Check the health of the PLTV pipeline"}'
+     -d '{"prompt": "Check the health of the data pipeline"}'
    ```
 
 5. **For async execution:**
@@ -217,7 +217,7 @@ print(result)
 
 # Task 2: Debug a pipeline
 result = root_agent.run(
-    "Check the health of the PLTV pipeline and find any failed jobs"
+    "Check the health of the data pipeline and find any failed jobs"
 )
 print(result)
 ```

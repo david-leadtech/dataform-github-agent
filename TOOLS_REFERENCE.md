@@ -108,7 +108,7 @@ Search for files in the Dataform repository.
 
 **Example:**
 ```python
-files = search_files_in_dataform(query="pltv", file_type="sqlx")
+files = search_files_in_dataform(query="staging", file_type="sqlx")
 ```
 
 ---
@@ -122,7 +122,7 @@ Execute a Dataform workflow by name.
 
 **Example:**
 ```python
-result = execute_dataform_workflow(workflow_name="pltv-pipeline-daily")
+result = execute_dataform_workflow(workflow_name="staging-pipeline-daily")
 ```
 
 ---
@@ -137,11 +137,11 @@ Execute Dataform actions filtered by tags.
 
 **Example:**
 ```python
-# Execute all actions with tags ['pltv', 'staging']
-result = execute_dataform_by_tags(tags=["pltv", "staging"])
+# Execute all actions with tags ['staging', 'silver']
+result = execute_dataform_by_tags(tags=["staging", "silver"])
 
 # Compile only
-result = execute_dataform_by_tags(tags=["pltv"], compile_only=True)
+result = execute_dataform_by_tags(tags=["staging"], compile_only=True)
 ```
 
 **API:**
@@ -149,7 +149,7 @@ result = execute_dataform_by_tags(tags=["pltv"], compile_only=True)
 POST /tools/dataform/execute_dataform_by_tags
 Body: {
   "args": {
-    "tags": ["pltv", "staging"],
+    "tags": ["staging", "silver"],
     "compile_only": false
   }
 }
@@ -236,7 +236,7 @@ Check the health of a pipeline.
 
 **Example:**
 ```python
-health = check_pipeline_health(tags=["pltv"], days=7)
+health = check_pipeline_health(tags=["staging"], days=7)
 ```
 
 ---

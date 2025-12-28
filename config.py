@@ -53,7 +53,7 @@ class Config:
     self.github_token: Optional[str] = os.getenv("GITHUB_TOKEN")
     self.github_repo_path: Optional[str] = os.getenv(
         "GITHUB_REPO_PATH"
-    )  # Format: "owner/repo" (e.g., "leadtechcorp/dataform-pltv-pipeline")
+    )  # Format: "owner/repo" (e.g., "leadtechcorp/dataform-pipeline")
     self.github_default_branch: str = os.getenv(
         "GITHUB_DEFAULT_BRANCH", "main"
     )

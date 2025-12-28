@@ -241,10 +241,10 @@ Agent:
 The agent can execute actions filtered by **any combination of tags from your Dataform project**. Tags are defined in each SQLX file's `config` block and are **project-specific**. Actions must have **ALL** specified tags to be included.
 
 ```
-User: "Execute all PLTV staging tables"
+User: "Execute all staging tables"
 
 Agent:
-1. execute_dataform_by_tags(['pltv', 'staging'])
+1. execute_dataform_by_tags(['staging', 'silver'])
    - Executes only actions with BOTH 'pltv' AND 'staging' tags
 ```
 
@@ -252,7 +252,7 @@ Agent:
 - Actions must have **ALL** specified tags to be included (AND logic)
 - **Tags are project-specific** - they must exist in your Dataform SQLX files
 - Each project defines its own tags in the `config { tags: [...] }` block
-- `['pltv', 'staging']` → Only actions with both 'pltv' AND 'staging' tags
+- `['staging', 'silver']` → Only actions with both 'staging' AND 'silver' tags
 - `['gold']` → All actions with 'gold' tag
 - **Any combination of tags from your specific Dataform project files**
 
@@ -346,10 +346,10 @@ Agent:
 ### Example 7: Monitor pipeline health
 
 ```
-User: "Check the health of the PLTV pipeline"
+User: "Check the health of the data pipeline"
 
 Agent:
-1. check_pipeline_health(tags=['pltv'])
+1. check_pipeline_health(tags=['staging'])
    - Analyzes recent workflow executions
    - Calculates success rate, average duration
    - Identifies failure patterns
@@ -382,10 +382,10 @@ Agent:
    - Creates comprehensive documentation
 ```
 
-### Example 12: Debug BigQuery memory error (PLTV pipeline)
+### Example 12: Debug BigQuery memory error
 
 ```
-User: "The PLTV pipeline failed with a memory error, job ID abc123"
+User: "The data pipeline failed with a memory error, job ID abc123"
 
 Agent:
 1. analyze_bigquery_error('abc123')

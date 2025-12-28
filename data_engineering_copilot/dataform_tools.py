@@ -362,16 +362,16 @@ def execute_dataform_by_tags(
 
   This is useful when you want to run specific parts of a pipeline without needing
   a pre-configured workflow. You can use any combination of tags from your Dataform
-  files (e.g., ['silver', 'staging'], ['gold', 'looker'], ['cost', 'pltv']).
+  files (e.g., ['silver', 'staging'], ['gold', 'looker'], ['cost', 'production']).
 
   Args:
       tags (List[str]): List of tags to filter actions. Actions must have ALL
         specified tags to be included (AND logic).
         Examples:
-        - ['pltv', 'staging'] → Only actions with both 'pltv' AND 'staging' tags
+        - ['staging', 'silver'] → Only actions with both 'staging' AND 'silver' tags
         - ['silver'] → All actions with 'silver' tag
         - ['cost', 'extract'] → Only actions with both 'cost' AND 'extract' tags
-        - ['gold', 'pltv', 'looker'] → Only actions with all three tags
+        - ['gold', 'production', 'looker'] → Only actions with all three tags
       compile_only (bool): If True, only compile without execution (default: False).
 
   Returns:

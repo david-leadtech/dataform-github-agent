@@ -32,7 +32,7 @@ async def list_tools() -> list[Tool]:
             description="Run a data engineering task using the Data Engineering Copilot. "
                        "The agent can work with Dataform, dbt, PySpark (Dataproc/Databricks), "
                        "BigQuery, GitHub, and GCS. Examples: 'Create a new Dataform source', "
-                       "'Debug the PLTV pipeline', 'Check pipeline health', 'Create a PR with changes'.",
+                       "'Debug the data pipeline', 'Check pipeline health', 'Create a PR with changes'.",
             inputSchema={
                 "type": "object",
                 "properties": {

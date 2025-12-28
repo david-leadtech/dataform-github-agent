@@ -87,7 +87,7 @@ Close and reopen Cursor completely.
 
 In Cursor, ask:
 ```
-Use the data engineering copilot to check the health of the PLTV pipeline
+Use the data engineering copilot to check the health of the data pipeline
 ```
 
 ---
@@ -212,7 +212,7 @@ Use the data engineering copilot to create a new Dataform source for Apple Ads
 
 **In Cursor chat:**
 ```
-Use the data engineering copilot to debug the PLTV pipeline and find any failed jobs
+Use the data engineering copilot to debug the data pipeline and find any failed jobs
 ```
 
 **What happens:**
@@ -238,7 +238,7 @@ Use the data engineering copilot to create a branch, add a new staging table, an
 
 **In Cursor chat:**
 ```
-Use the data engineering copilot to check the health of all pipelines with pltv tag
+Use the data engineering copilot to check the health of all staging pipelines
 ```
 
 **What happens:**
@@ -276,7 +276,7 @@ Run a data engineering task using the Data Engineering Copilot. The agent intell
 
 **Example Prompts:**
 - "Create a new Dataform source for Apple Ads"
-- "Debug the PLTV pipeline and find failed jobs"
+- "Debug the data pipeline and find failed jobs"
 - "Check the health of all pipelines"
 - "Create a PR with the new staging table"
 - "Run dbt models for staging layer"

@@ -39,7 +39,7 @@ echo ""
 echo "💡 Example usage:"
 echo "   curl -X POST http://localhost:${PORT}/agent/run \\"
 echo "     -H 'Content-Type: application/json' \\"
-echo "     -d '{\"prompt\": \"Check the health of the PLTV pipeline\"}'"
+echo "     -d '{\"prompt\": \"Check the health of the data pipeline\"}'"
 echo ""
 
 # Run API server

@@ -72,7 +72,7 @@ Execute a data engineering task using the AI agent. The agent intelligently deci
 curl -X POST http://localhost:8000/agent/run \
   -H "Content-Type: application/json" \
   -d '{
-    "prompt": "Check the health of the PLTV pipeline",
+    "prompt": "Check the health of the data pipeline",
     "async_execution": false
   }'
 ```
@@ -84,7 +84,7 @@ import requests
 response = requests.post(
     "http://localhost:8000/agent/run",
     json={
-        "prompt": "Check the health of the PLTV pipeline",
+        "prompt": "Check the health of the data pipeline",
         "async_execution": False
     }
 )
@@ -107,7 +107,7 @@ print(response.json())
 **Async Execution:**
 ```json
 {
-  "prompt": "Run the PLTV pipeline",
+  "prompt": "Run the staging pipeline",
   "async_execution": true
 }
 ```
@@ -449,7 +449,7 @@ curl -X POST http://localhost:8000/tools/dataform/execute_dataform_by_tags \
   -H "Content-Type: application/json" \
   -d '{
     "args": {
-      "tags": ["pltv", "staging"],
+      "tags": ["staging", "silver"],
       "compile_only": false
     }
   }'
@@ -626,7 +626,7 @@ class DataEngineeringCopilotClient:
 client = DataEngineeringCopilotClient()
 
 # Use the agent
-result = client.run_agent("Check the health of the PLTV pipeline")
+result = client.run_agent("Check the health of the data pipeline")
 print(result)
 
 # Execute a tool directly

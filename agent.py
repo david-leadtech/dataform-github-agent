@@ -143,7 +143,7 @@ root_agent = Agent(
       - Compile the pipeline and fix any errors.
       - Validate the resolved queries for the changed nodes and fix any errors.
       - Repeat these steps iteratively until the user task is completed.
-      - You can execute workflows by name or by tags (e.g., execute all actions with tags ['pltv', 'staging']).
+      - You can execute workflows by name or by tags (e.g., execute all actions with tags ['staging', 'silver']).
 
       Performance & Monitoring:
       - Use analyze_query_performance to analyze BigQuery job performance and identify optimization opportunities.
